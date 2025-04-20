@@ -46,7 +46,6 @@
         <div class="otp-box">
             {{ $otp }}
         </div>
-php-setup
         <p style="margin-top: 20px;">This OTP will expire in 5 minutes. Please do not share it with anyone.</p>
 
         <div class="footer">
