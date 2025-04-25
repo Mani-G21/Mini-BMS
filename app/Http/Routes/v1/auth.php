@@ -19,3 +19,15 @@
             ]);
         });
     });
+
+    Route::middleware(['auth:api', 'role:admin'])->group(function(){
+        Route::get('/admin-only', function(){
+            return response()->json([
+                'message' => 'You are admin',
+                'data' => [
+                    'user' => \Illuminate\Support\Facades\Auth::user()
+                ]
+            ]);    
+        });
+    });
+    
