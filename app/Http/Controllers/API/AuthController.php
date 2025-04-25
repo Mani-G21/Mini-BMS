@@ -39,13 +39,32 @@ class AuthController extends Controller
             throw ValidationException::withMessages(['otp' => 'Invalid or Expired OTP']);
         }
 
-        $token = $this->authService->registerOrLogin($dto);
+        $newToken = $this->authService->registerOrLogin($dto);
+        return $this->respondWithToken($newToken);
+    }
+
+    public function respondWithToken(string $token): JsonResponse{
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_at' => auth('api')->factory()->getTTL() * 60,
+            'expires_in' => auth('api')->factory()->getTTL() * 60
         ]);
     }
+
+    /**
+     * Refreshes the current token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refreshToken(): JsonResponse
+    {
+        // The 'auth:api' middleware ensures the user is authenticated.
+        // The refresh method automatically invalidates the old token (adds it to the blacklist).
+        $newToken = $this->authService->refreshToken();
+        return $this->respondWithToken($newToken);
+    }
+
+
 
 
 }

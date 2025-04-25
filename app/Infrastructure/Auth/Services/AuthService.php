@@ -24,4 +24,16 @@ class AuthService{
 
         return JWTAuth::fromUser($user);
     }
+
+     /**
+     * Refresh the JWT token.
+     *
+     * @return string The new JWT token.
+     */
+    public function refreshToken(): string
+    {
+        // The refresh method invalidates the current token and returns a new one.
+        return auth('api')->refresh();
+    }
+
 }

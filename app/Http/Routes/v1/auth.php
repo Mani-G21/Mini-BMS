@@ -6,6 +6,7 @@
     Route::prefix('auth')->group(function(){
         Route::post('otp/get', [AuthController::class, 'sendOtp']);
         Route::post('otp/verify', [AuthController::class, 'verifyOtp']);
+        Route::post('refresh', [AuthController::class, 'refreshToken']);
     });
 
     Route::middleware('auth:api')->group(function(){
