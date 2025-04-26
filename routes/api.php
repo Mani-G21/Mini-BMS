@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,7 @@ Route::get('/redis-test', function(){
     return response()->json(['Message' => Redis::get('ping')]);
 });
 
-Route::prefix('v1')->group(function(){
-    require base_path('app/Http/Routes/v1/auth.php');
-});
+RouteServiceProvider::loadVersionedRoutes('v1');
+// Route::prefix('v1')->group(function(){
+//     require base_path('app/Http/Routes/v1/auth.php');
+// });
