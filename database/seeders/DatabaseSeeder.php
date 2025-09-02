@@ -21,8 +21,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            UserSeeder::class,
             CitySeeder::class,
             MovieSeeder::class,
+            TheaterSeeder::class,
+            ShowSeeder::class,
         ]);
     }
 }

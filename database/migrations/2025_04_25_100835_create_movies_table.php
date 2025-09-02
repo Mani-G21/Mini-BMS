@@ -24,7 +24,10 @@ return new class extends Migration
             $table->decimal('rating', 3, 1)->nullable();
             $table->enum('status', ['now_showing', 'coming_soon']);
             $table->timestamps();
-            $table->fullText(['title', 'description']);
+            if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+                $table->fullText('title');
+            }
+
 
         });
     }
