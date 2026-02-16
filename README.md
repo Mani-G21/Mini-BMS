@@ -1,220 +1,61 @@
-# Mini-BMS (Movie Booking Management System)
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-A modern, RESTful API for managing movie bookings, theaters, shows, and cities. Built with Laravel 12 and designed with clean architecture principles.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## 📋 Overview
+## About Laravel
 
-Mini-BMS is a comprehensive movie booking management system that provides APIs for managing movies, theaters, shows, and user authentication. The system supports both public and admin functionalities with JWT-based authentication.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## ✨ Features
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-- **Movie Management**
-  - Browse movies by status (now showing, coming soon)
-  - Filter movies by city, language, genre
-  - View movie details including trailers, ratings, and descriptions
-  - Admin can create and update movies
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-- **Theater Management**
-  - View theaters by city
-  - Admin can manage theater information
-  - Support for multiple screens and locations
+## Learning Laravel
 
-- **Show Management**
-  - Browse available shows for movies
-  - Filter by date, time, language, and format
-  - Support for different price tiers
-  - Admin can schedule and manage shows
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-- **City Management**
-  - View available cities
-  - Filter movies and theaters by city
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-- **Authentication & Authorization**
-  - OTP-based authentication via email
-  - JWT token-based API access
-  - Role-based access control (User/Admin)
-  - Token refresh mechanism
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## 🛠️ Technology Stack
+## Laravel Sponsors
 
-- **Backend Framework**: Laravel 12
-- **PHP Version**: 8.2+
-- **Database**: PostgreSQL (configurable)
-- **Cache & Queue**: Redis
-- **Authentication**: JWT (tymon/jwt-auth)
-- **Frontend Build**: Vite + Tailwind CSS
-- **Testing**: PHPUnit
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-## 📦 Installation
+### Premium Partners
 
-### Prerequisites
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Redberry](https://redberry.international/laravel-development/)**
+- **[Active Logic](https://activelogic.com)**
 
-- PHP 8.2 or higher
-- Composer
-- PostgreSQL
-- Redis
-- Node.js & npm
+## Contributing
 
-### Setup Steps
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Mani-G21/Mini-BMS.git
-   cd Mini-BMS
-   ```
+## Code of Conduct
 
-2. **Install PHP dependencies**
-   ```bash
-   composer install
-   ```
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-3. **Install JavaScript dependencies**
-   ```bash
-   npm install
-   ```
+## Security Vulnerabilities
 
-4. **Environment Configuration**
-   ```bash
-   cp .env.example .env
-   ```
-   
-   Update the following environment variables:
-   - `DB_DATABASE`: Your PostgreSQL database name
-   - `DB_USERNAME`: Your database username
-   - `DB_PASSWORD`: Your database password
-   - `JWT_SECRET`: Your JWT secret key
-   - `REDIS_HOST`: Your Redis host (default: 127.0.0.1)
-   - `MAIL_*`: Email configuration for OTP delivery
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-5. **Generate Application Key**
-   ```bash
-   php artisan key:generate
-   ```
+## License
 
-6. **Run Migrations**
-   ```bash
-   php artisan migrate
-   ```
-
-7. **Start the Development Server**
-   ```bash
-   composer run dev
-   ```
-   
-   This will concurrently run:
-   - Laravel development server (http://localhost:8000)
-   - Queue worker
-   - Log viewer (Pail)
-   - Vite dev server
-
-## 🔌 API Endpoints
-
-### Public Endpoints
-
-#### Authentication
-- `POST /api/v1/auth/otp/get` - Request OTP
-- `POST /api/v1/auth/otp/verify` - Verify OTP and get JWT token
-- `POST /api/v1/auth/refresh` - Refresh JWT token
-
-#### Movies
-- `GET /api/v1/movies` - List all movies (with filters)
-- `GET /api/v1/movies/{id}` - Get movie details
-
-#### Cities
-- `GET /api/v1/cities` - List all cities
-- `GET /api/v1/cities/{id}` - Get city details
-
-### Authenticated Endpoints
-
-#### User Profile
-- `GET /api/v1/me` - Get authenticated user details
-
-#### Theaters
-- `GET /api/v1/theaters` - List all theaters
-- `GET /api/v1/theaters/{id}` - Get theater details
-
-#### Shows
-- `GET /api/v1/shows` - List all shows (with filters)
-- `GET /api/v1/shows/{id}` - Get show details
-
-### Admin Endpoints
-
-#### Movies Management
-- `POST /api/v1/admin/movies` - Create new movie
-- `PUT /api/v1/admin/movies/{id}` - Update movie
-
-#### Theaters Management
-- `POST /api/v1/admin/theaters` - Create theater
-- `PUT /api/v1/admin/theaters/{id}` - Update theater
-- `DELETE /api/v1/admin/theaters/{id}` - Delete theater
-
-#### Shows Management
-- `POST /api/v1/admin/shows` - Create show
-- `PUT /api/v1/admin/shows/{id}` - Update show
-- `DELETE /api/v1/admin/shows/{id}` - Delete show
-
-## 🗄️ Database Schema
-
-### Core Tables
-- **users** - User accounts with role-based access
-- **movies** - Movie information (title, description, duration, genre, etc.)
-- **cities** - Available cities
-- **movie_city** - Movie-city relationship (pivot table)
-- **theaters** - Theater information
-- **shows** - Show schedules with pricing tiers
-
-## 🧪 Testing
-
-Run the test suite:
-```bash
-composer run test
-```
-
-Or directly with PHPUnit:
-```bash
-php artisan test
-```
-
-## 🚀 Development
-
-### Code Quality
-The project uses Laravel Pint for code formatting:
-```bash
-./vendor/bin/pint
-```
-
-### Building Assets
-Build frontend assets for production:
-```bash
-npm run build
-```
-
-## 📝 Architecture
-
-The project follows clean architecture principles with:
-- **DTOs (Data Transfer Objects)** - For data transformation
-- **Services** - Business logic layer
-- **Repositories** - Data access layer
-- **Controllers** - HTTP request handling
-- **Validators** - Request validation
-- **Middleware** - Authentication and authorization
-
-## 🔐 Security
-
-- JWT-based authentication
-- Role-based access control
-- OTP verification for user authentication
-- Environment-based configuration
-- CSRF protection
-
-## 📄 License
-
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📧 Contact
-
-For any questions or issues, please open an issue on GitHub.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
